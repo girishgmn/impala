@@ -1,4 +1,7 @@
-pipeline { 
+pipeline {
+  environment {
+    JAVA_TOOL_OPTIONS = "-duser.home=/var/maven"
+  }
   agent {
   docker { 
     image "maven:3.8.2-adoptopenjdk-11"
@@ -10,7 +13,7 @@ pipeline {
     stage("build") { 
       steps { 
         sh "mvn --version"
-        sh "apt mvn install"
+        sh "mvn clean install"
       }
     }
   }
@@ -20,5 +23,5 @@ pipeline {
     }
   }
 }
-
+}
                 
