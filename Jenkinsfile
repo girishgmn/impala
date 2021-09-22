@@ -6,7 +6,7 @@ agent any
    stages { 
     stage("Clean code") { 
       steps { 
-      sh "git clone https://github.com/girishgmn/impala/edit/master/Jenkinsfile"
+      sh "git clone https://github.com/girishgmn/impala"
       }
       }
       stage("build code"){
