@@ -1,27 +1,19 @@
 pipeline {
+agent any
   environment {
-    JAVA_TOOL_OPTIONS = "-duser.home=/var/maven"
+   PATH = "/usr/bin/mvn:$PATH"
   }
-  agent {
-  docker { 
-    image "maven:3.8.2-adoptopenjdk-11"
-    args "-v /root/.m2:/root/.m2"
-  }
-  }
-  tools { 
-  stages { 
-    stage("build") { 
+   stages { 
+    stage("Clean code") { 
       steps { 
-        sh "mvn --version"
-        sh "mvn clean install"
+      sh "git clone https://github.com/girishgmn/impala/edit/master/Jenkinsfile"
+      }
+      }
+      stage("build code"){
+      steps{
+         sh "mvn clean install"
       }
     }
-  }
-  post { 
-    always { 
-      cleanWs()
     }
-  }
-}
-}
+    }
                 
